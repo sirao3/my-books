@@ -1,0 +1,9 @@
+@my_books_HostAddress = http://localhost:5292
+
+POST {{my_books_HostAddress}}/api/books/put-book
+Accept: application/json
+
+GET {{my_books_HostAddress}}/api/books/get-book
+Accept: application/json
+
+###
