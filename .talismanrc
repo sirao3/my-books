@@ -1,0 +1,4 @@
+fileignoreconfig:
+- filename: my-books/Data/AppDbContext.cs
+  checksum: 95cc6860fa5aa98d2f3ad085d31fcf54e7aacc84e2f6b7a4ebb49e04aef29e03
+version: ""
