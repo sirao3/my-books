@@ -20,7 +20,6 @@ public class AppDbInitialiser
                     DateRead = DateTime.Now.AddDays(-10),
                     Rate = 4,
                     Genre = "Biography",
-                    Author = "1st Author",
                     CoverUrl = "https....",
                     DateAdded = DateTime.Now
                 },
@@ -29,7 +28,6 @@ public class AppDbInitialiser
                     Description = "2nd Book Desc",
                     IsRead = false,
                     Genre = "Biography",
-                    Author = "2nd Author",
                     CoverUrl = "https....",
                     DateAdded = DateTime.Now
                 }
