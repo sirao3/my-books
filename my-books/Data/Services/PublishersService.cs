@@ -54,4 +54,25 @@ public class PublishersService
     private bool StringStartsWithNumber(string name){
         return (Regex.IsMatch(name, @"^\d"));
     }
+
+    public List<Publisher> GetAllPublishers(string sortBy, int? pageNumber)
+    {
+        var allPublishers = _context.Publishers.OrderBy(n => n.Name).ToList();
+
+        if(!string.IsNullOrEmpty(sortBy)){
+            switch(sortBy)
+            {
+                case "name_desc":
+                    allPublishers= allPublishers.OrderByDescending(n => n.Name).ToList();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        //Paging
+        int pageSize=5;
+        allPublishers= PaginatedList<Publisher>.Create(allPublishers.AsQueryable(), pageNumber ?? 1, pageSize);
+        return allPublishers;
+    }
 }
