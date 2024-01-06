@@ -3,6 +3,8 @@ using my_books.Data.Models;
 using my_books.Data.Services;
 using my_books.Data;
 using my_books;
+using Serilog;
+using Serilog.Events;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,22 @@ builder.Services.AddTransient<PublishersService>();
 builder.Services.AddTransient<AuthorsService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// var configuration = new ConfigurationBuilder()
+//     .AddJsonFile("appsettings.json")
+//     .Build();
+
+// Serilog.Log.Logger = new LoggerConfiguration()
+//     .ReadFrom.Configuration(configuration)
+//     .CreateLogger();
+
+Serilog.Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("Logs/log.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog();
 
 var app = builder.Build();
 
@@ -28,11 +46,14 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseRouting();
 
 app.ConfigureBuildInExceptionHandler();
 //app.ConfigureCustomExceptionHandler();
 
 app.MapControllers();
+
+
 
 app.Run();
 

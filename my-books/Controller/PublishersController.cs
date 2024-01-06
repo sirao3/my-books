@@ -8,15 +8,18 @@ namespace my_books.Controller
     public class PublishersController : ControllerBase
     {
         private PublishersService _publishersService;
-        public PublishersController(PublishersService publishersService)
+        private readonly ILogger<PublishersController> _logger;
+        public PublishersController(PublishersService publishersService, ILogger<PublishersController> logger)
         {
             _publishersService = publishersService;
+            _logger = logger;
         }
 
         [HttpGet("get-all-publishers")]
         public IActionResult GetAllPublishers(string sortBy, int pageNumber){
             try
             {
+                _logger.LogInformation("This is just a log in GetAllPublishers()");
                 var result = _publishersService.GetAllPublishers(sortBy, pageNumber);
                 return Ok(result);
             }
@@ -47,7 +50,7 @@ namespace my_books.Controller
 
         [HttpGet("get-publisher-by-id/{id}")]
         public IActionResult GetPublisherById(int id){
-            throw new Exception("Handled by middleware");
+            //throw new Exception("Handled by middleware");
             
             var _response = _publishersService.GetPublisherData(id);
             if(_response != null){
