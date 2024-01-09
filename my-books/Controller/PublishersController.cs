@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace my_books.Controller
 {
+    [Authorize(Roles = UserRoles.Publisher)]
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]

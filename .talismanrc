@@ -2,3 +2,14 @@ fileignoreconfig:
 - filename: my-books/Data/AppDbContext.cs
   checksum: 95cc6860fa5aa98d2f3ad085d31fcf54e7aacc84e2f6b7a4ebb49e04aef29e03
 version: ""
+
+fileignoreconfig:
+- filename: my-books/Program.cs
+  checksum: d0e9ad8e8b595a3056a03ee83a182a30035231b9f0206767afdadd298561092e
+- filename: my-books/Controller/AuthenticationController.cs
+  checksum: 4b6687af9a7440c05f181a95aec8f8138d2d7b836903b4c1c1532ffa06865b15
+- filename: my-books/Data/AppDbContext.cs
+  checksum: 4d7ccaaf3ddc611be328f87397ef75b07eec104f40953e5702eb6f4b37c48e74
+- filename: my-books/Migrations/20240108083131_IdentityAdded.cs
+  checksum: cd8112dbf9ecd32f7aae668f0a6ebea02506cefda621a2e88a49dd7d9bddcda0
+version: ""
