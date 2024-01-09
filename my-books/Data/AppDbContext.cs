@@ -1,9 +1,9 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 namespace my_books.Data.Models;
 
-public class AppDbContext:DbContext
+public class AppDbContext:IdentityDbContext<ApplicationUser>
 {
     public AppDbContext(DbContextOptions<AppDbContext> options):base(options)
     {
@@ -19,7 +19,9 @@ public class AppDbContext:DbContext
         modelBuilder.Entity<Book_Author>()
             .HasOne(b => b.Author)
             .WithMany(ba => ba.Book_Authors)
-            .HasForeignKey(bi => bi.AuthorId);   
+            .HasForeignKey(bi => bi.AuthorId); 
+
+        base.OnModelCreating(modelBuilder);
     }
 
     public DbSet<Book> Books { get; set;}
@@ -27,4 +29,5 @@ public class AppDbContext:DbContext
     public DbSet<Book_Author> Books_Authors { get; set;}
     public DbSet<Publisher> Publishers { get; set;}
     public DbSet<Log> Logs { get; set;}
+    public DbSet<RefreshToken> RefreshTokens { get; set; }
 }
